@@ -83,6 +83,19 @@ async function run () {
     })
   })
 
+  test('Hyperdrive - load drive from hyperdrive-daemon', (t) => {
+    t.timeoutAfter(TEST_TIMEOUT)
+
+    const drive1 = Hyperdrive2('ccf6879e84bb5d5e9b134f9a43a2cca7d7b6c7b26c996de27e35756a406bcc66')
+    drive1.ready(() => {
+      drive1.readdir('/', (err, files) => {
+        t.notOk(err, 'loaded file without error')
+        // t.equal(files.length, 11);
+        // t.end();
+      })
+    })
+  })
+
   test('Hyperdrive - new drive created after close', (t) => {
     const drive = Hyperdrive('Example drive 3')
 
